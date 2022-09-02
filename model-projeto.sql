@@ -46,16 +46,15 @@ ENGINE = InnoDB;
 -- Table `db_ecommerce`.`tb_produto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_ecommerce`.`tb_produto` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `id` BIGINT AUTO_INCREMENT,
   `nome` VARCHAR(255) NOT NULL,
   `descricao` VARCHAR(255) NOT NULL,
   `fabricante` VARCHAR(255) NOT NULL,
   `quantidade` INT NULL,
   `preco` DECIMAL(10,2) NOT NULL,
-  `id` BIGINT NOT NULL,
   `tb_categoria_id` BIGINT NULL,
   `tb_usuario_id` BIGINT NULL,
-  PRIMARY KEY (`id`, `id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_tb_produto_tb_categoria_idx` (`tb_categoria_id` ASC) VISIBLE,
   INDEX `fk_tb_produto_tb_usuario1_idx` (`tb_usuario_id` ASC) VISIBLE,
   CONSTRAINT `fk_tb_produto_tb_categoria`
