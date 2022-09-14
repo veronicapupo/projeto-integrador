@@ -6,15 +6,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration
-@EnableWebMvc
+@EnableWebSecurity
 public class BasicSecurityConfig {
 
 	@Bean
@@ -33,10 +33,12 @@ public class BasicSecurityConfig {
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().cors();
 
-		http.authorizeHttpRequests((auth) -> auth.antMatchers("/usuarios/logar").permitAll()
-				.antMatchers("/usuarios/cadastrar").permitAll().antMatchers("/usuarios/atualizar").permitAll()
-				.antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest().authenticated()).httpBasic();
-
+		http.authorizeHttpRequests((auth) -> auth.antMatchers("/usuario/logar").permitAll()
+				.antMatchers("/usuario/cadastrar").permitAll()
+				.antMatchers("/usuario/atualizar").permitAll()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
+				.antMatchers("/produto/all").permitAll().anyRequest().authenticated()).httpBasic();
+		
 		return http.build();
 
 	}
