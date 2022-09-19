@@ -16,6 +16,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
+    public Usuario(Long id, String nome, String usuario, String senha, String foto, String cpf, String endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.foto = foto;
+        this.cpf = cpf;
+        this.endereco = endereco;
+    }
+
+    public Usuario() {
+    }
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
